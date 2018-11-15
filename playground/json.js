@@ -1,13 +1,31 @@
-var obj = {
-  name: 'Andrew'
+// var obj = {
+//   name: 'Andrew'
+// }
+
+// var stringObj = JSON.stringify(obj);
+// console.log(typeof stringObj)
+// console.log(stringObj)
+
+// var personString = '{"name": "Andrew", "age": 25}'
+// var person = JSON.parse(personString)
+
+// console.log(typeof person)
+// console.log(person)
+
+const fs = require('fs')
+
+var orignalNote = {
+  title: 'Some title',
+  body: 'Some body'
 }
 
-var stringObj = JSON.stringify(obj);
-console.log(typeof stringObj)
-console.log(stringObj)
+var orignalNoteString = JSON.stringify(orignalNote)
 
-var personString = '{"name": "Andrew", "age": 25}'
-var person = JSON.parse(personString)
+fs.writeFileSync('notes.json', orignalNoteString)
 
-console.log(typeof person)
-console.log(person)
+
+var noteString = fs.readFileSync('notes.json')
+
+var note = JSON.parse(noteString)
+console.log(typeof note)
+console.log(note.title)

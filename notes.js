@@ -14,11 +14,15 @@ var addNote = (title, body) => {
     var noteString = fs.readFileSync('notes-data.json')
     notes = JSON.parse(noteString)
   } catch (e) {
-    
+
   }
 
-  notes.push(note)
-  fs.writeFileSync('notes-data.json', JSON.stringify(notes))
+  var duplicateNotes = notes.filter((note) => note.title === title)
+
+  if (duplicateNotes.length == 0) {
+    notes.push(note)
+    fs.writeFileSync('notes-data.json', JSON.stringify(notes))
+  }
 }
 
 var getAll = () => {
